@@ -1,15 +1,11 @@
-import { Header } from "@/components/header"
-import { ContactSection } from "@/components/contact-section"
-import { Footer } from "@/components/footer"
+import { ContactSection } from "@/components/sections/contact-section"
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-20">
+      <main>
         <ContactSection />
       </main>
-      <Footer />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import { Award, GraduationCap } from "lucide-react"
 
 export default function CertificatesPower() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 bg-white">
       <div className="container mx-auto px-4">
         <div className="pt-10">
           <h2 className="text-emerald-600 text-4xl font-bold mb-2 text-center xl:text-5xl">Sertifikatlarimiz kuchi</h2>

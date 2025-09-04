@@ -43,7 +43,7 @@ export default function TeachersShowcase() {
   const activeTeacher = teachers[selectedTeacher]
 
   return (
-    <section className="py-12 sm:py-16 bg-white">
+    <section className="py-10 sm:py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold text-slate-800 mb-4">Bizning o'qituvchilarimiz</h2>

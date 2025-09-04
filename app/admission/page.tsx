@@ -1,16 +1,13 @@
-import { Header } from "@/components/header"
-import { AdmissionSection } from "@/components/admission-section"
-import { Footer } from "@/components/footer"
+import { AdmissionSection } from "@/components/sections/admission-section";
+
 
 
 export default function AdmissionPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <AdmissionSection />
-      <main className="pt-20">
+      <main>
+        <AdmissionSection />
       </main>
-      <Footer />
     </div>
   )
 }

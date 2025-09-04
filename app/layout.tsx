@@ -1,10 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Montserrat, Open_Sans } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/layout/theme-provider"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 import "./globals.css"
+import { BottomNav } from "@/components/layout/bottom-nav"
 
-// Montserrat va Open Sans fontlarini cyrillic subset bilan chaqirish
+// Fontlar
 const montserrat = Montserrat({
   subsets: ["cyrillic"],
   display: "swap",
@@ -19,9 +22,8 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: "Biologiya va Kimyo Akademiyasi - Ixtisoslashgan Maktab",
-  description:
-    "Kelajak olimlarini amaliy ta'lim orqali rivojlantirish. Biologiya va kimyo fanlariga ixtisoslashgan xususiy maktab.",
-  generator: "v0.app",
+  description: "Kelajak olimlarini amaliy ta'lim orqali rivojlantirish.",
+  generator: "rafkix.uz",
   keywords: "biologiya, kimyo, xususiy maktab, laboratoriya, sertifikat, o'qituvchilar, akademiya",
   authors: [{ name: "Biologiya va Kimyo Akademiyasi" }],
   openGraph: {
@@ -34,12 +36,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="uz" className={`${montserrat.variable} ${openSans.variable} antialiased`}>
-      <body className="font-sans">
+      <body className="font-sans bg-background text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -47,7 +47,11 @@ export default function RootLayout({
           themes={["light", "evening", "dark"]}
           disableTransitionOnChange={false}
         >
-          {children}
+          <Header /> 
+          <main className="pt-0 bg-red-100">{children}</main>
+ {/* ✅ faqat layout beradi */}
+          <Footer />
+          <BottomNav /> 
         </ThemeProvider>
       </body>
     </html>

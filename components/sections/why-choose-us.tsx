@@ -49,7 +49,7 @@ function FeatureCard({ icon: Icon, title, description }: { icon: any; title: str
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 to-emerald-50">
+    <section className="py-10 bg-gradient-to-br from-slate-50 to-emerald-50">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">

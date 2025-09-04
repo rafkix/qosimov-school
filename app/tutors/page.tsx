@@ -1,15 +1,11 @@
-import { Header } from "@/components/header"
-import { TutorsSection } from "@/components/tutors-section"
-import { Footer } from "@/components/footer"
+import { TutorsSection } from "@/components/sections/tutors-section"
 
 export default function TutorsPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-20">
+      <main>
         <TutorsSection />
       </main>
-      <Footer />
     </div>
   )
 }

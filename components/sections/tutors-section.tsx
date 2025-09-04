@@ -226,20 +226,6 @@ export function TutorsSection() {
   return (
     <section id="tutors" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Language Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="flex bg-muted rounded-lg p-1">
-            <button
-              onClick={() => setLanguage("UZ")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                language === "UZ" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              O'zbek
-            </button>
-          </div>
-        </div>
-
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4">

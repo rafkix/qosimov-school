@@ -1,23 +1,19 @@
-import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
-import { SchoolActivities } from "@/components/school-activities"
-import WhyChooseUs from "@/components/why-choose-us"
-import CertificatesPower from "@/components/certificates-power"
-import StudentTestimonials from "@/components/student-testimonials"
-import TeachersShowcase from "@/components/teachers-showcase"
-import { Footer } from "@/components/footer"
+import { HeroSection } from "@/components/sections/hero-section"
+import { SchoolActivities } from "@/components/sections/school-activities"
+import WhyChooseUs from "@/components/sections/why-choose-us"
+import CertificatesPower from "@/components/sections/certificates-power"
+import StudentTestimonials from "@/components/sections/student-testimonials"
+import TeachersShowcase from "@/components/sections/teachers-showcase"
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      <Header />
       <HeroSection />
       <WhyChooseUs />
       <CertificatesPower />
       <StudentTestimonials />
       <TeachersShowcase />
       <SchoolActivities />
-      <Footer />
     </main>
   )
 }

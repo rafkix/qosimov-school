@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { Award, BookOpen, CheckCircle, Trophy, Users } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -101,7 +103,7 @@ export function CertificatesSection() {
   }
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20">
+    <section className="py-10 px-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

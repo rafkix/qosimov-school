@@ -4,14 +4,15 @@ import { Montserrat, Open_Sans } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
+// Montserrat va Open Sans fontlarini cyrillic subset bilan chaqirish
 const montserrat = Montserrat({
-  subsets: ["latin"],
+  subsets: ["cyrillic"],
   display: "swap",
   variable: "--font-montserrat",
 })
 
 const openSans = Open_Sans({
-  subsets: ["latin"],
+  subsets: ["cyrillic"],
   display: "swap",
   variable: "--font-open-sans",
 })

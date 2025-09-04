@@ -15,7 +15,7 @@ interface Course {
   category: "biology" | "chemistry" | "advanced" | "preparation"
   duration: string
   students: number
-  level: "Beginner" | "Intermediate" | "Advanced"
+  level: "Boshlang‘ich" | "O‘rta" | "Murakkab"
   price: string
   outcomes: string[]
   certification: string
@@ -26,96 +26,96 @@ interface Course {
 const courses: Course[] = [
   {
     id: "1",
-    title: "Cell Biology Fundamentals",
-    description: "Explore the basic unit of life through hands-on microscopy and cellular analysis.",
+    title: "Hujayra Biologiyasi Asoslari",
+    description: "Hayotning asosiy bo‘lagini mikroskop orqali kuzatish va tahlil qilish.",
     category: "biology",
-    duration: "12 weeks",
+    duration: "12 hafta",
     students: 45,
-    level: "Beginner",
-    price: "$299",
-    outcomes: ["Understand cell structure", "Master microscopy techniques", "Analyze cellular processes"],
-    certification: "Cell Biology Certificate",
+    level: "Boshlang‘ich",
+    price: "299 000 so‘m",
+    outcomes: ["Hujayra tuzilishini tushunish", "Mikroskopiya usullarini o‘rganish", "Hujayra jarayonlarini tahlil qilish"],
+    certification: "Hujayra Biologiyasi Sertifikati",
     icon: Microscope,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: "2",
-    title: "Organic Chemistry Mastery",
-    description: "Master organic compounds, reactions, and synthesis through laboratory practice.",
+    title: "Organik Kimyo Asoslari",
+    description: "Organik moddalar, reaksiyalar va sintez usullarini o‘rganish.",
     category: "chemistry",
-    duration: "16 weeks",
+    duration: "16 hafta",
     students: 38,
-    level: "Intermediate",
-    price: "$399",
-    outcomes: ["Organic reaction mechanisms", "Synthesis techniques", "Spectroscopy analysis"],
-    certification: "Organic Chemistry Certificate",
+    level: "O‘rta",
+    price: "399 000 so‘m",
+    outcomes: ["Organik reaksiyalar mexanizmi", "Sintez texnikalari", "Spektroskopiya tahlili"],
+    certification: "Organik Kimyo Sertifikati",
     icon: Atom,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: "3",
-    title: "Genetics & DNA Analysis",
-    description: "Dive deep into heredity, gene expression, and modern genetic engineering techniques.",
+    title: "Genetika va DNK Tahlili",
+    description: "Merosi, gen ifodalanishi va gen muhandisligi texnologiyalarini chuqur o‘rganish.",
     category: "biology",
-    duration: "14 weeks",
+    duration: "14 hafta",
     students: 32,
-    level: "Advanced",
-    price: "$449",
-    outcomes: ["DNA extraction & analysis", "Gene expression studies", "CRISPR techniques"],
-    certification: "Genetics Specialist Certificate",
+    level: "Murakkab",
+    price: "449 000 so‘m",
+    outcomes: ["DNK ajratish va tahlil", "Gen ifodalanishini o‘rganish", "CRISPR texnikalari"],
+    certification: "Genetika Mutaxassisi Sertifikati",
     icon: Dna,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: "4",
-    title: "Biochemistry Integration",
-    description: "Bridge biology and chemistry through enzyme kinetics and metabolic pathways.",
+    title: "Biokimyo Integratsiyasi",
+    description: "Biologiya va kimyoni ferment kinetikasi hamda metabolizm orqali bog‘lash.",
     category: "advanced",
-    duration: "18 weeks",
+    duration: "18 hafta",
     students: 28,
-    level: "Advanced",
-    price: "$549",
-    outcomes: ["Enzyme mechanisms", "Metabolic analysis", "Protein structure"],
-    certification: "Biochemistry Expert Certificate",
+    level: "Murakkab",
+    price: "549 000 so‘m",
+    outcomes: ["Ferment mexanizmlari", "Metabolik jarayonlarni tahlil qilish", "Oqsil tuzilishi"],
+    certification: "Biokimyo Mutaxassisi Sertifikati",
     icon: FlaskConical,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: "5",
-    title: "University Prep Biology",
-    description: "Comprehensive preparation for university-level biology entrance exams.",
+    title: "Universitetga Tayyorlov Biologiya",
+    description: "Universitet kirish imtihonlari uchun to‘liq tayyorlov dasturi.",
     category: "preparation",
-    duration: "10 weeks",
+    duration: "10 hafta",
     students: 65,
-    level: "Intermediate",
-    price: "$249",
-    outcomes: ["Exam strategies", "Advanced problem solving", "University readiness"],
-    certification: "University Prep Certificate",
+    level: "O‘rta",
+    price: "249 000 so‘m",
+    outcomes: ["Imtihon strategiyalari", "Murakkab masalalarni yechish", "Universitetga tayyorgarlik"],
+    certification: "Universitetga Tayyorlov Sertifikati",
     icon: BookOpen,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: "6",
-    title: "Chemistry Olympiad Training",
-    description: "Elite training program for chemistry competition preparation.",
+    title: "Kimyo Olimpiadasiga Tayyorlov",
+    description: "Kimyo bo‘yicha xalqaro musobaqalarga tayyorlash dasturi.",
     category: "preparation",
-    duration: "20 weeks",
+    duration: "20 hafta",
     students: 15,
-    level: "Advanced",
-    price: "$699",
-    outcomes: ["Competition strategies", "Advanced problem solving", "Research skills"],
-    certification: "Olympiad Training Certificate",
+    level: "Murakkab",
+    price: "699 000 so‘m",
+    outcomes: ["Musobaqa strategiyalari", "Murakkab masalalarni yechish", "Ilmiy tadqiqot ko‘nikmalari"],
+    certification: "Olimpiada Tayyorlov Sertifikati",
     icon: Award,
     image: "/placeholder.svg?height=200&width=300",
   },
 ]
 
 const categories = [
-  { id: "all", label: "All Courses", count: courses.length },
-  { id: "biology", label: "Biology", count: courses.filter((c) => c.category === "biology").length },
-  { id: "chemistry", label: "Chemistry", count: courses.filter((c) => c.category === "chemistry").length },
-  { id: "advanced", label: "Advanced", count: courses.filter((c) => c.category === "advanced").length },
-  { id: "preparation", label: "Exam Prep", count: courses.filter((c) => c.category === "preparation").length },
+  { id: "all", label: "Barcha Kurslar", count: courses.length },
+  { id: "biology", label: "Biologiya", count: courses.filter((c) => c.category === "biology").length },
+  { id: "chemistry", label: "Kimyo", count: courses.filter((c) => c.category === "chemistry").length },
+  { id: "advanced", label: "Murakkab", count: courses.filter((c) => c.category === "advanced").length },
+  { id: "preparation", label: "Imtihonga Tayyorlov", count: courses.filter((c) => c.category === "preparation").length },
 ]
 
 export function CoursesSection() {
@@ -127,11 +127,11 @@ export function CoursesSection() {
 
   const getLevelColor = (level: string) => {
     switch (level) {
-      case "Beginner":
+      case "Boshlang‘ich":
         return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
-      case "Intermediate":
+      case "O‘rta":
         return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
-      case "Advanced":
+      case "Murakkab":
         return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300"
       default:
         return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300"
@@ -141,18 +141,17 @@ export function CoursesSection() {
   return (
     <section id="courses" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Bo‘lim Sarlavhasi */}
         <div className="text-center mb-16">
           <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4">
-            Our <span className="text-primary">Courses</span>
+            Bizning <span className="text-primary">Kurslar</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive programs designed to build expertise in Biology and Chemistry through hands-on learning and
-            expert guidance.
+            Biologiya va Kimyo fanlarini amaliy mashg‘ulotlar va tajribali ustozlar yordamida chuqur o‘rganing.
           </p>
         </div>
 
-        {/* Category Filters */}
+        {/* Kategoriyalar */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map((category) => (
             <Button
@@ -169,7 +168,7 @@ export function CoursesSection() {
           ))}
         </div>
 
-        {/* Courses Grid */}
+        {/* Kurslar */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.map((course) => (
             <Card
@@ -180,7 +179,7 @@ export function CoursesSection() {
               onMouseEnter={() => setHoveredCourse(course.id)}
               onMouseLeave={() => setHoveredCourse(null)}
             >
-              {/* Course Image */}
+              {/* Kurs rasmi */}
               <div className="relative overflow-hidden rounded-t-lg">
                 <img
                   src={course.image || "/placeholder.svg"}
@@ -203,7 +202,7 @@ export function CoursesSection() {
               </CardHeader>
 
               <CardContent className="space-y-4">
-                {/* Course Stats */}
+                {/* Kurs ma’lumotlari */}
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <div className="flex items-center space-x-1">
                     <Clock className="h-4 w-4" />
@@ -211,13 +210,13 @@ export function CoursesSection() {
                   </div>
                   <div className="flex items-center space-x-1">
                     <Users className="h-4 w-4" />
-                    <span>{course.students} students</span>
+                    <span>{course.students} ta o‘quvchi</span>
                   </div>
                 </div>
 
-                {/* Learning Outcomes */}
+                {/* Natijalar */}
                 <div>
-                  <h4 className="font-semibold text-sm mb-2">What you'll learn:</h4>
+                  <h4 className="font-semibold text-sm mb-2">Nimani o‘rganasiz:</h4>
                   <ul className="text-xs text-muted-foreground space-y-1">
                     {course.outcomes.slice(0, 2).map((outcome, index) => (
                       <li key={index} className="flex items-start space-x-2">
@@ -226,12 +225,12 @@ export function CoursesSection() {
                       </li>
                     ))}
                     {course.outcomes.length > 2 && (
-                      <li className="text-primary text-xs">+{course.outcomes.length - 2} more outcomes</li>
+                      <li className="text-primary text-xs">+{course.outcomes.length - 2} ta qo‘shimcha mavzu</li>
                     )}
                   </ul>
                 </div>
 
-                {/* Certification */}
+                {/* Sertifikat */}
                 <div className="flex items-center space-x-2 p-2 bg-accent/10 rounded-lg">
                   <Award className="h-4 w-4 text-accent" />
                   <span className="text-xs font-medium">{course.certification}</span>
@@ -241,23 +240,23 @@ export function CoursesSection() {
               <CardFooter className="flex items-center justify-between">
                 <div className="text-2xl font-heading font-bold text-primary">{course.price}</div>
                 <Button className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  Enroll Now
+                  Ro‘yxatdan o‘tish
                 </Button>
               </CardFooter>
             </Card>
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* CTA */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8">
-            <h3 className="font-heading font-bold text-2xl mb-4">Can't find the right course?</h3>
+            <h3 className="font-heading font-bold text-2xl mb-4">Kerakli kursni topa olmadingizmi?</h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              We offer custom programs tailored to your specific learning goals. Contact our academic advisors to design
-              a personalized learning path.
+              Biz sizning maqsadlaringizga mos maxsus o‘quv dasturlarini tuzib beramiz. Shaxsiy o‘quv rejasini yaratish
+              uchun bizning akademik maslahatchilarimizga murojaat qiling.
             </p>
             <Button size="lg" variant="outline">
-              Request Custom Program
+              Maxsus dastur so‘rash
             </Button>
           </div>
         </div>

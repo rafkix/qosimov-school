@@ -2,7 +2,6 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { SchoolActivities } from "@/components/school-activities"
 import WhyChooseUs from "@/components/why-choose-us"
-import AppShowcase from "@/components/app-showcase"
 import CertificatesPower from "@/components/certificates-power"
 import StudentTestimonials from "@/components/student-testimonials"
 import TeachersShowcase from "@/components/teachers-showcase"
@@ -14,7 +13,6 @@ export default function HomePage() {
       <Header />
       <HeroSection />
       <WhyChooseUs />
-      <AppShowcase />
       <CertificatesPower />
       <StudentTestimonials />
       <TeachersShowcase />

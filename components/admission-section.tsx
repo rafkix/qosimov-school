@@ -436,7 +436,7 @@ export function AdmissionSection() {
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-3">
-                                <Checkbox checked={isSelected} readOnly />
+                                <Checkbox checked={isSelected} />
                                 <div>
                                   <h4 className="font-semibold">{course.name}</h4>
                                   <div className="flex items-center space-x-4 mt-1">

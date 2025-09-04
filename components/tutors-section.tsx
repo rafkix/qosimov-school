@@ -19,7 +19,7 @@ import { Star, MapPin, Users, BookOpen } from "lucide-react"
 interface Tutor {
   id: string
   name: string
-  title: { UZ: string; "UZ-CYR": string }
+  title: { UZ: string;}
   specialization: { UZ: string[]; "UZ-CYR": string[] }
   experience: number
   rating: number

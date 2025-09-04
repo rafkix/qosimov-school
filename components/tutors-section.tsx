@@ -19,18 +19,18 @@ import { Star, MapPin, Users, BookOpen } from "lucide-react"
 interface Tutor {
   id: string
   name: string
-  title: { UZ: string;}
-  specialization: { UZ: string[]; "UZ-CYR": string[] }
+  title: { UZ: string }
+  specialization: { UZ: string[] }
   experience: number
   rating: number
   reviews: number
   students: number
   image: string
-  location: { UZ: string; "UZ-CYR": string }
+  location: { UZ: string }
   languages: string[]
-  education: { UZ: string[]; "UZ-CYR": string[] }
-  achievements: { UZ: string[]; "UZ-CYR": string[] }
-  bio: { UZ: string; "UZ-CYR": string }
+  education: { UZ: string[] }
+  achievements: { UZ: string[] }
+  bio: { UZ: string }
   availability: {
     [key: string]: string[] // day: time slots
   }
@@ -53,21 +53,19 @@ const tutors: Tutor[] = [
   {
     id: "dr-sarah-johnson",
     name: "Dr. Sarah Johnson",
-    title: { UZ: "Katta biologiya o'qituvchisi", "UZ-CYR": "Катта биология ўқитувчиси" },
+    title: { UZ: "Katta biologiya o'qituvchisi" },
     specialization: {
       UZ: ["Hujayra biologiyasi", "Genetika", "Molekulyar biologiya", "Tadqiqot usullari"],
-      "UZ-CYR": ["Ҳужайра биологияси", "Генетика", "Молекуляр биология", "Тадқиқот усуллари"],
     },
     experience: 12,
     rating: 4.9,
     reviews: 156,
     students: 340,
     image: "/placeholder.svg?height=300&width=300",
-    location: { UZ: "Biologiya kafedrasi", "UZ-CYR": "Биология кафедраси" },
+    location: { UZ: "Biologiya kafedrasi" },
     languages: ["O'zbek", "Ingliz", "Rus"],
     education: {
       UZ: ["PhD Molekulyar biologiya - Harvard universiteti", "MSc Hujayra biologiyasi - MIT"],
-      "UZ-CYR": ["PhD Молекуляр биология - Гарвард университети", "MSc Ҳужайра биологияси - MIT"],
     },
     achievements: {
       UZ: [
@@ -75,16 +73,9 @@ const tutors: Tutor[] = [
         "Milliy fan jamg'armasi grantini olgan",
         "2023-yil eng yaxshi o'qituvchi mukofoti",
       ],
-      "UZ-CYR": [
-        "25+ илмий мақола нашр етган",
-        "Миллий фан жамғармаси грантини олган",
-        "2023-йил энг яхши ўқитувчи мукофоти",
-      ],
     },
     bio: {
       UZ: "Dr. Johnson molekulyar biologiya tadqiqoti va ta'limida 12 yildan ortiq tajribaga ega bo'lgan ishtiyoqli pedagog. U murakkab biologik tushunchalarni barcha darajadagi talabalarga tushunarli qilishda mutaxassis.",
-      "UZ-CYR":
-        "Доктор Жонсон молекуляр биология тадқиқоти ва таълимида 12 йилдан ортиқ тажрибага эга бўлган иштиёқли педагог. У мураккаб биологик тушунчаларни барча даражадаги талабаларга тушунарли қилишда мутахассис.",
     },
     availability: {
       Monday: ["09:00-11:00", "14:00-16:00"],
@@ -98,21 +89,19 @@ const tutors: Tutor[] = [
   {
     id: "prof-michael-chen",
     name: "Prof. Michael Chen",
-    title: { UZ: "Kimyo kafedrasi mudiri", "UZ-CYR": "Кимё кафедраси мудири" },
+    title: { UZ: "Kimyo kafedrasi mudiri" },
     specialization: {
       UZ: ["Organik kimyo", "Analitik kimyo", "Kimyoviy sintez", "Spektroskopiya"],
-      "UZ-CYR": ["Органик кимё", "Аналитик кимё", "Кимёвий синтез", "Спектроскопия"],
     },
     experience: 18,
     rating: 4.8,
     reviews: 203,
     students: 520,
     image: "/placeholder.svg?height=300&width=300",
-    location: { UZ: "Kimyo kafedrasi", "UZ-CYR": "Кимё кафедраси" },
+    location: { UZ: "Kimyo kafedrasi" },
     languages: ["O'zbek", "Ingliz", "Xitoy", "Nemis"],
     education: {
       UZ: ["PhD Organik kimyo - Stanford universiteti", "Postdok - Max Plank instituti"],
-      "UZ-CYR": ["PhD Органик кимё - Стэнфорд университети", "Постдок - Макс Планк институти"],
     },
     achievements: {
       UZ: [
@@ -120,16 +109,9 @@ const tutors: Tutor[] = [
         "Xalqaro kimyo mukofoti sovrindori",
         "40+ ilmiy maqola muallifi",
       ],
-      "UZ-CYR": [
-        "'Замонавий органик кимё' дарслигининг муаллифи",
-        "Халқаро кимё мукофоти совриндори",
-        "40+ илмий мақола муаллифи",
-      ],
     },
     bio: {
       UZ: "Professor Chen o'zining ta'limiga keng sanoat va akademik tajribasini olib keladi. Uning organik sintez bo'yicha tadqiqotlari farmatsevtika kimyosida muhim kashfiyotlarga olib kelgan.",
-      "UZ-CYR":
-        "Профессор Чен ўзининг таълимига кенг саноат ва академик тажрибасини олиб келади. Унинг органик синтез бўйича тадқиқотлари фармацевтика кимёсида муҳим кашфиётларга олиб келган.",
     },
     availability: {
       Monday: ["10:00-12:00", "15:00-17:00"],
@@ -197,40 +179,7 @@ export function TutorsSection() {
       additionalMessage: "Qo'shimcha xabar",
       cancel: "Bekor qilish",
       bookButton: "Maslahat buyurtma qilish",
-    },
-    "UZ-CYR": {
-      title: "Бизнинг мутахассис",
-      titleHighlight: "Ўқитувчилар",
-      description:
-        "Биология ва кимё соҳасида тажрибали педагог ва тадқиқотчилардан ўрганинг. Шахсий маслаҳатлар буюртма қилинг ва ўрганишингизни тезлаштиринг.",
-      filterPlaceholder: "Мутахассислик бўйича фильтрлаш",
-      specializations: [
-        "Барча мутахассисликлар",
-        "Ҳужайра биологияси",
-        "Генетика",
-        "Молекуляр биология",
-        "Органик кимё",
-        "Аналитик кимё",
-        "Биокимё",
-        "Тадқиқот усуллари",
-      ],
-      experience: "йиллик тажриба",
-      viewProfile: "Профилни кўриш",
-      bookConsult: "Бепул маслаҳат",
-      freeConsultation: "БЕПУЛ МАСЛАҲАТ",
-      bookingTitle: "Маслаҳат буюртма қилиш",
-      bookingDescription: "Танлаган ўқитувчингиз билан шахсий маслаҳат сеансини режалаштиринг.",
-      consultationType: "Маслаҳат тури",
-      subjectFocus: "Фан йўналиши",
-      preferredDate: "Керакли сана",
-      availableSlots: "Мавжуд вақтлар",
-      studentName: "Талаба исми",
-      emailAddress: "Email манзил",
-      phoneNumber: "Телефон рақам",
-      additionalMessage: "Қўшимча хабар",
-      cancel: "Бекор қилиш",
-      bookButton: "Маслаҳат буюртма қилиш",
-    },
+    }
   }
 
   const currentContent = content[language as keyof typeof content]
@@ -287,16 +236,6 @@ export function TutorsSection() {
               }`}
             >
               O'zbek
-            </button>
-            <button
-              onClick={() => setLanguage("UZ-CYR")}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                language === "UZ-CYR"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Ўзбек
             </button>
           </div>
         </div>

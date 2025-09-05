@@ -39,17 +39,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="uz" className={`${montserrat.variable} ${openSans.variable} antialiased`}>
-      <body className="font-sans bg-background text-foreground">
+      <body className="font-sans bg-background text-foreground dark:bg-background-dark dark:text-foreground-dark">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem={false}
+          enableSystem={false} // SSR bilan moslashadi
           themes={["light", "evening", "dark"]}
           disableTransitionOnChange={false}
         >
-          <Header /> 
-          <main className="pt-0 bg-red-100">{children}</main>
- {/* ✅ faqat layout beradi */}
+          <Header />
+          <main className="pt-0 bg-red-100 dark:bg-red-800">{children}</main>
           <Footer />
           <BottomNav /> 
         </ThemeProvider>

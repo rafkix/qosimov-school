@@ -64,7 +64,7 @@ export function HeroSection() {
           <div className="relative order-first lg:order-last">
             <div className="relative bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl">
               <img
-                src="/placeholder.svg?height=600&width=500"
+                src="/main.jpg?height=600&width=500"
                 alt="Qosimov School - Zamonaviy laboratoriya"
                 className="w-full h-auto rounded-xl shadow-lg"
               />

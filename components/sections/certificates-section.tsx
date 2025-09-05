@@ -1,220 +1,163 @@
 "use client"
 
-import { useState } from "react"
-import { Award, BookOpen, CheckCircle, Trophy, Users } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState, useEffect } from "react"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Search, Download, Eye, Award } from "lucide-react"
+import { api } from "@/lib/api"
 
-// 🔹 Helper Components
-const BadgeList = ({ items }: { items: string[] }) => (
-  <div className="flex flex-wrap gap-1">
-    {items.map((item, i) => (
-      <Badge key={i} variant="secondary" className="text-xs">
-        {item}
-      </Badge>
-    ))}
-  </div>
-)
+export default function CertificatesPage() {
+  const [certificates, setCertificates] = useState<any[]>([])
+  const [achievements, setAchievements] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-const StatsCard = ({ icon: Icon, title, value, variant }: { icon: any; title: string; value: string; variant: "default" | "secondary" | "outline" }) => (
-  <Card className="bg-background/50 backdrop-blur border shadow-sm">
-    <CardHeader className="flex flex-row items-center justify-between pb-2">
-      <CardTitle className="text-sm font-medium">{title}</CardTitle>
-      <div className={`p-2 rounded-full ${variant === "default" ? "bg-primary text-primary-foreground" : variant === "secondary" ? "bg-secondary text-secondary-foreground" : "bg-muted text-muted-foreground"}`}>
-        <Icon className="h-4 w-4" />
-      </div>
-    </CardHeader>
-    <CardContent>
-      <div className="text-2xl font-bold">{value}</div>
-    </CardContent>
-  </Card>
-)
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 12
 
-// 🔹 Mock Data
-const certificates = [
-  {
-    id: 1,
-    title: "Cell Biology Fundamentals Certificate",
-    description: "Awarded for completion of core cell biology modules with distinction.",
-    image: "/certificates/cell-biology.png",
-    category: "Biology",
-    level: "Foundation",
-    issueDate: "June 2024",
-    validUntil: "June 2026",
-    credentialId: "CBC-2024-001",
-    skills: ["Cell Structure", "Molecular Biology", "Lab Techniques"],
-    recipients: ["John Doe", "Sara Karimova"]
-  },
-  {
-    id: 2,
-    title: "Organic Chemistry Proficiency Certificate",
-    description: "Recognition of excellence in advanced organic chemistry coursework.",
-    image: "/certificates/organic-chem.png",
-    category: "Chemistry",
-    level: "Intermediate",
-    issueDate: "July 2024",
-    validUntil: "July 2027",
-    credentialId: "OCP-2024-045",
-    skills: ["Synthesis", "Spectroscopy", "Reaction Mechanisms"],
-    recipients: ["Michael Smith", "Aisha Umar"]
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [certs, achvs] = await Promise.all([api.getCertificates(), api.getActivities()])
+        setCertificates(Array.isArray(certs) ? certs : [])
+        setAchievements(Array.isArray(achvs) ? achvs : [])
+      } catch (err) {
+        console.error(err)
+        setError("Ma'lumotlarni yuklashda xatolik yuz berdi.")
+        setCertificates([])
+        setAchievements([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const handleOpenVerification = () => {
+    window.open("https://sertifikat.uzbmb.uz/site/cert?type=1", "_blank")
   }
-]
 
-const achievements = [
-  {
-    id: 1,
-    title: "National Biology Olympiad Winner",
-    description: "Students from our academy achieved top 3 positions in the national competition.",
-    icon: Trophy,
-    recipients: ["John Doe", "Sara Karimova"],
-    date: "May 2024",
-    category: "Competition"
-  },
-  {
-    id: 2,
-    title: "Research Paper Publication",
-    description: "Student research featured in International Journal of Chemistry Education.",
-    icon: BookOpen,
-    recipients: ["Michael Smith"],
-    date: "April 2024",
-    category: "Research"
-  }
-]
+  // Pagination logic
+  const totalPages = Math.ceil(certificates.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const currentCertificates = certificates.slice(startIndex, startIndex + itemsPerPage)
 
-const studentStats = [
-  { title: "Total Certificates", value: "2,345", icon: Award, variant: "default" },
-  { title: "Active Certifications", value: "1,872", icon: CheckCircle, variant: "secondary" },
-  { title: "Average Score", value: "92%", icon: Users, variant: "outline" },
-  { title: "Completion Rate", value: "87%", icon: Trophy, variant: "default" }
-]
-
-export function CertificatesSection() {
-  const [filter, setFilter] = useState("All")
-  const [credentialId, setCredentialId] = useState("")
-  const [verification, setVerification] = useState<"success" | "error" | null>(null)
-
-  const handleVerification = () => {
-    const found = certificates.find(c => c.credentialId === credentialId)
-    setVerification(found ? "success" : "error")
-  }
+  if (loading) return <p className="text-center py-10">Yuklanmoqda...</p>
+  if (error) return <p className="text-center py-10 text-red-500">{error}</p>
 
   return (
-    <section className="py-10 px-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20">
-      <div className="container mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Certificates & Achievements</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Our certification program validates student knowledge and provides internationally recognized credentials.
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
-          {/* {studentStats.map((stat, i) => (
-            <StatsCard key={i} {...stat} />
-          ))} */}
-        </div>
-
-        {/* Verification */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-4">Verify Certificate</h3>
-          <div className="flex gap-2 max-w-md">
-            <Input placeholder="Enter Credential ID" value={credentialId} onChange={e => setCredentialId(e.target.value)} />
-            <Button onClick={handleVerification}>Verify</Button>
+    <div className="min-h-screen bg-background">
+      <main>
+        <div className="container mx-auto px-4 py-16">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Sertifikatlar va Yutuqlar
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Talabalarimizning muvaffaqiyatlari va erishgan natijalari
+            </p>
           </div>
-          {verification && (
-            <Alert variant={verification === "success" ? "default" : "destructive"} className="mt-4">
-              <AlertDescription>
-                {verification === "success" ? "Certificate found and verified." : "No certificate found for this ID."}
-              </AlertDescription>
-            </Alert>
-          )}
-        </div>
 
-        {/* Certificates */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8">Certificate Gallery</h3>
-          <div className="flex gap-2 mb-6">
-            {["All", "Biology", "Chemistry"].map(cat => (
-              <Button key={cat} variant={filter === cat ? "default" : "outline"} size="sm" onClick={() => setFilter(cat)}>
-                {cat}
+          {/* Certificate Verification */}
+          <Card className="mb-16">
+            <CardContent className="p-8 text-center">
+              <h2 className="text-2xl font-heading font-bold mb-6">Sertifikat tekshirish</h2>
+              <Button
+                onClick={handleOpenVerification}
+                className="px-6"
+              >
+                <Search className="h-4 w-4 mr-2" />
+                Sertifikatni tekshirish
               </Button>
-            ))}
-          </div>
+            </CardContent>
+          </Card>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {certificates.filter(c => filter === "All" || c.category === filter).map(cert => (
-              <Card key={cert.id} className="hover:shadow-lg transition-all bg-background/50 backdrop-blur">
-                <CardHeader>
-                  <CardTitle>{cert.title}</CardTitle>
-                  <CardDescription>{cert.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <img src={cert.image} alt={cert.title} className="w-full rounded-lg mb-4" />
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button className="w-full">View Details</Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>{cert.title}</DialogTitle>
-                      </DialogHeader>
-                      <p className="mb-4">{cert.description}</p>
-                      <div className="space-y-2 text-sm">
-                        <div><strong>Issue Date:</strong> {cert.issueDate}</div>
-                        <div><strong>Valid Until:</strong> {cert.validUntil}</div>
-                        <div><strong>Credential ID:</strong> {cert.credentialId}</div>
+          {/* Certificates Gallery */}
+          <div>
+            <h2 className="text-3xl font-heading font-bold text-center mb-8">Sertifikatlar galereyasi</h2>
+            {currentCertificates.length > 0 ? (
+              <>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {currentCertificates.map((cert) => (
+                    <Card key={cert.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="relative aspect-[210/297] bg-gradient-to-br from-primary/5 to-accent/5">
+                        <img
+                          src={cert.image || "/placeholder.svg"}
+                          alt={`${cert.name} certificate`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4 text-white">
+                          <div className="text-sm font-medium mb-1">{cert.name}</div>
+                          <div className="text-xs opacity-90">{cert.student}</div>
+                        </div>
                       </div>
-                      <h4 className="mt-4 font-semibold">Skills Covered</h4>
-                      <BadgeList items={cert.skills} />
-                      <h4 className="mt-4 font-semibold">Recipients</h4>
-                      <BadgeList items={cert.recipients} />
-                    </DialogContent>
-                  </Dialog>
-                </CardContent>
-              </Card>
-            ))}
+                      <CardContent className="p-4">
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <h3 className="font-semibold">{cert.name}</h3>
+                            <p className="text-sm text-muted-foreground">{cert.student}</p>
+                          </div>
+                          <Badge variant="outline">{cert.grade}</Badge>
+                        </div>
+                        <div className="flex justify-between items-center text-sm text-muted-foreground mb-4">
+                          <span>{cert.date}</span>
+                          <Badge variant="secondary">{cert.type}</Badge>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                            <Eye className="h-4 w-4 mr-2" />
+                            Ko'rish
+                          </Button>
+                          <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                            <Download className="h-4 w-4 mr-2" />
+                            Yuklab olish
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                <div className="flex justify-center items-center gap-2 mt-8">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                  >
+                    Oldingi
+                  </Button>
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <Button
+                      key={i}
+                      size="sm"
+                      variant={i + 1 === currentPage ? "default" : "outline"}
+                      onClick={() => setCurrentPage(i + 1)}
+                    >
+                      {i + 1}
+                    </Button>
+                  ))}
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                  >
+                    Keyingi
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <p className="text-center text-muted-foreground col-span-3">Sertifikatlar mavjud emas</p>
+            )}
           </div>
         </div>
-
-        {/* Achievements */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Student Achievements</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {achievements.map(a => (
-              <Card key={a.id} className="hover:shadow-xl transition-all bg-background/50 backdrop-blur">
-                <CardHeader className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-primary/10 text-primary">
-                    <a.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <CardTitle>{a.title}</CardTitle>
-                    <CardDescription>{a.description}</CardDescription>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                    <span>Date: {a.date}</span>
-                    <Badge variant="outline">{a.category}</Badge>
-                  </div>
-                  <h5 className="font-semibold text-sm mb-2">Recipients:</h5>
-                  <BadgeList items={a.recipients} />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <Button size="lg" className="px-8 py-6 text-lg">Apply for Certification</Button>
-        </div>
-      </div>
-    </section>
+      </main>
+    </div>
   )
 }

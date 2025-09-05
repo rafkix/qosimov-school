@@ -1,31 +1,24 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Montserrat, Open_Sans } from "next/font/google"
-import { ThemeProvider } from "@/components/layout/theme-provider"
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import { BottomNav } from "@/components/layout/bottom-nav"
-import "./globals.css"
+// app/loading.tsx
+"use client"
 
-const montserrat = Montserrat({ subsets: ["cyrillic"], display: "swap", variable: "--font-montserrat" })
-const openSans = Open_Sans({ subsets: ["cyrillic"], display: "swap", variable: "--font-open-sans" })
+import { Loader2 } from "lucide-react"
 
-export const metadata: Metadata = {
-  title: "Biologiya va Kimyo Akademiyasi - Ixtisoslashgan Maktab",
-  description: "Kelajak olimlarini amaliy ta'lim orqali rivojlantirish. Biologiya va kimyo fanlariga ixtisoslashgan xususiy maktab.",
-}
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Loading() {
   return (
-    <html lang="uz" className={`${montserrat.variable} ${openSans.variable} antialiased`}>
-      <body className="font-sans bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <Header /> {/* faqat sm+ */}
-          <main className="pt-16 pb-16 sm:pb-0">{children}</main>
-          <Footer />
-          <BottomNav /> {/* faqat mobile (sm-) */}
-        </ThemeProvider>
-      </body>
-    </html>
+    <div className="flex items-center justify-center h-screen bg-gradient-to-br from-emerald-50 via-slate-50 to-emerald-100">
+      <div className="flex flex-col items-center gap-6 animate-pulse">
+        {/* Spinner */}
+        <div className="relative">
+          <div className="absolute -inset-2 rounded-full border-4 border-emerald-200 animate-ping" />
+          <Loader2 className="h-14 w-14 animate-spin text-emerald-600 relative z-10" />
+        </div>
+
+        {/* Text */}
+        <div className="text-center">
+          <p className="text-xl font-semibold text-slate-800">Yuklanmoqda...</p>
+          <p className="text-sm text-slate-500">Iltimos, biroz kutib turing</p>
+        </div>
+      </div>
+    </div>
   )
 }

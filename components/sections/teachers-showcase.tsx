@@ -1,44 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Play, Pause } from "lucide-react"
-
-const teachers = [
-  {
-    name: "Qosimova Dilnoza",
-    qualification: "Kimyo PhD",
-    image: "/placeholder.svg?height=60&width=60",
-    active: true,
-  },
-  {
-    name: "Karimov Sardor",
-    qualification: "Biologiya Magistr",
-    image: "/placeholder.svg?height=60&width=60",
-    active: false,
-  },
-  {
-    name: "Abdullayeva Nigora",
-    qualification: "Kimyo Magistr",
-    image: "/placeholder.svg?height=60&width=60",
-    active: false,
-  },
-  {
-    name: "Rakhmatov Alijon",
-    qualification: "Biologiya PhD",
-    image: "/placeholder.svg?height=60&width=60",
-    active: false,
-  },
-  {
-    name: "Yusupova Madina",
-    qualification: "Kimyo Magistr",
-    image: "/placeholder.svg?height=60&width=60",
-    active: false,
-  },
-]
+import { api } from "@/lib/api" // sizning API helper pathingiz
 
 export default function TeachersShowcase() {
+  const [teachers, setTeachers] = useState<any[]>([])
   const [selectedTeacher, setSelectedTeacher] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    api.getTeachers()
+      .then((data) => {
+        setTeachers(data as any[])
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error(err)
+        setError("O'qituvchilarni yuklashda xatolik yuz berdi.")
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) return <p className="text-center py-10">Yuklanmoqda...</p>
+  if (error) return <p className="text-center py-10 text-red-500">{error}</p>
+  if (teachers.length === 0) return <p className="text-center py-10">O'qituvchilar topilmadi</p>
 
   const activeTeacher = teachers[selectedTeacher]
 
@@ -53,12 +41,12 @@ export default function TeachersShowcase() {
         </div>
 
         <div className="lg:flex lg:gap-8 max-w-6xl mx-auto">
-          {/* Teachers List - Mobile Slider */}
+          {/* Mobile slider */}
           <div className="lg:hidden mb-6 sm:mb-8">
             <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-4 scrollbar-hide">
               {teachers.map((teacher, index) => (
                 <button
-                  key={index}
+                  key={teacher.id || index}
                   onClick={() => setSelectedTeacher(index)}
                   className={`flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl min-w-max transition-all ${
                     index === selectedTeacher
@@ -80,11 +68,11 @@ export default function TeachersShowcase() {
             </div>
           </div>
 
-          {/* Teachers List - Desktop */}
+          {/* Desktop list */}
           <div className="hidden lg:flex lg:flex-col lg:w-1/4 gap-2">
             {teachers.map((teacher, index) => (
               <button
-                key={index}
+                key={teacher.id || index}
                 onClick={() => setSelectedTeacher(index)}
                 className={`flex items-center gap-3 p-4 rounded-2xl transition-all text-left ${
                   index === selectedTeacher
@@ -105,13 +93,12 @@ export default function TeachersShowcase() {
             ))}
           </div>
 
-          {/* Content Section */}
+          {/* Content */}
           <div className="lg:w-3/4 lg:flex lg:gap-8">
-            {/* Video Player */}
             <div className="lg:w-2/5 mb-6 sm:mb-8 lg:mb-0">
               <div className="relative bg-gradient-to-br from-emerald-100 to-blue-100 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[3/4] max-w-xs sm:max-w-sm mx-auto">
                 <img
-                  src="/placeholder.svg?height=500&width=350"
+                  src={activeTeacher.video_thumbnail || "/placeholder.svg?height=500&width=350"}
                   alt="Teacher video"
                   className="w-full h-full object-cover"
                 />
@@ -128,30 +115,26 @@ export default function TeachersShowcase() {
               </div>
             </div>
 
-            {/* Teacher Info */}
             <div className="lg:w-3/5">
               <div className="mb-6 sm:mb-8">
                 <p className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed">
-                  Kimyo va biologiya fanlaridan dars berishga qiziqishim universitet davridan boshlangan va shu
-                  yo'nalishni hayotimga bog'lashga qaror qilganman. O'z ishimdagi eng asosiy maqsadim, o'quvchilarning
-                  potensialini ochish va ularni nafaqat fan sohasiga, balki tadqiqot ishlariga ham qiziqtira olish.
+                  {activeTeacher.description || "O'qituvchi haqida ma'lumot mavjud emas."}
                 </p>
               </div>
 
-              {/* Statistics */}
               <div className="flex flex-col xs:flex-row gap-3 sm:gap-4">
                 <div className="flex-1 bg-slate-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
                   <div className="flex justify-end mb-2">
                     <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500"></div>
                   </div>
-                  <p className="text-2xl sm:text-3xl xl:text-4xl font-bold text-slate-800">8</p>
+                  <p className="text-2xl sm:text-3xl xl:text-4xl font-bold text-slate-800">{activeTeacher.experience || 0}</p>
                   <p className="text-slate-600 text-sm sm:text-base">yillik tajriba</p>
                 </div>
                 <div className="flex-1 bg-slate-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
                   <div className="flex justify-end mb-2">
                     <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-r from-orange-500 to-red-500"></div>
                   </div>
-                  <p className="text-2xl sm:text-3xl xl:text-4xl font-bold text-slate-800">500+</p>
+                  <p className="text-2xl sm:text-3xl xl:text-4xl font-bold text-slate-800">{activeTeacher.students || 0}+</p>
                   <p className="text-slate-600 text-sm sm:text-base">o'quvchi o'qitilgan</p>
                 </div>
               </div>

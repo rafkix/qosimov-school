@@ -16,9 +16,6 @@ import {
   Clock,
   Send,
   CheckCircle,
-  MessageSquare,
-  Users,
-  Calendar,
 } from "lucide-react"
 
 interface ContactForm {

@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -7,8 +8,8 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Telegram,
   Youtube,
+  Icon,
   Mail,
   Phone,
   MapPin,
@@ -44,7 +45,8 @@ const footerLinks = {
 const socialLinks = [
   { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/profile.php?id=61577871113545" },
   { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/qosimov.school/" },
-  { name: "Telegram", icon: Telegram, href: "https://t.me/QosimovSchool" },
+  // Replace Icon with Twitter for Telegram, or use a valid Lucide icon for Telegram
+  { name: "Telegram", icon: Twitter, href: "https://t.me/QosimovSchool" },
   { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@Qosimovschool" },
 ]
 
@@ -157,11 +159,10 @@ export function Footer() {
               {/* Ijtimoiy Tarmoqlar */}
               <div className="mt-8">
                 <h5 className="font-semibold text-foreground mb-4">Bizni kuzating</h5>
-                <div className="flex space-x-3">
                   {socialLinks.map((social) => (
                     <Button key={social.name} variant="outline" size="sm" asChild>
-                      <a href={social.href} aria-label={social.name}>
-                        <social.icon className="h-4 w-4" />
+                      <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+                        {React.createElement(social.icon, { className: "h-4 w-4" })}
                       </a>
                     </Button>
                   ))}
@@ -190,7 +191,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-      </div>
     </footer>
   )
 }

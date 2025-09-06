@@ -7,7 +7,7 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Linkedin,
+  Telegram,
   Youtube,
   Mail,
   Phone,

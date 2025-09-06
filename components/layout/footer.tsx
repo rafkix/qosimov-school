@@ -42,11 +42,10 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "Instagram", icon: Instagram, href: "#" },
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "YouTube", icon: Youtube, href: "#" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/profile.php?id=61577871113545" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/qosimov.school/" },
+  { name: "Telegram", icon: Telegram, href: "https://t.me/QosimovSchool" },
+  { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@Qosimovschool" },
 ]
 
 export function Footer() {
@@ -73,15 +72,17 @@ export function Footer() {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center space-x-3">
                   <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">123 Science Boulevard, Toshkent, O‘zbekiston</span>
+                  <span className="text-muted-foreground">Farg'ona viloyati, Qo'shtepa tumani, Qorajiyda shaharchasi, Qorajiyda ko'chasi 156</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">+998 71 123 4567</span>
+                  <span className="text-muted-foreground">+998 (91) 689 26 46</span>
+                  <span className="text-muted-foreground">+998 (91) 129 57 44</span>
+                  <span className="text-muted-foreground">+998 (93) 669 69 23</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">info@biochemistry-academy.uz</span>
+                  <span className="text-muted-foreground">info@qosimovschool.uz</span>
                 </div>
               </div>
             </div>

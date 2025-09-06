@@ -43,7 +43,7 @@ const footerLinks = {
 
 const socialLinks = [
   { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/profile.php?id=61577871113545" },
-  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/qosimov_school_kids?utm_source=ig_web_button_share_sheet&igsh=NmI4YzM1NzVmcmtw" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/qosimov.school/" },
   { name: "Telegram", icon: Telegram, href: "https://t.me/QosimovSchool" },
   { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@Qosimovschool" },
 ]

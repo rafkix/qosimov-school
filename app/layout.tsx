@@ -38,19 +38,25 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="uz" className={`${montserrat.variable} ${openSans.variable} antialiased`}>
-      <body className="font-sans bg-background text-foreground dark:bg-background-dark dark:text-foreground-dark">
+    <html
+      lang="uz"
+      suppressHydrationWarning
+      className={`${montserrat.variable} ${openSans.variable} antialiased`}
+    >
+      <body className="font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem={false} // SSR bilan moslashadi
+          enableSystem={false}
           themes={["light", "evening", "dark"]}
-          disableTransitionOnChange={false}
+          disableTransitionOnChange
         >
           <Header />
-          <main className="pt-0 bg-red-100 dark:bg-red-800">{children}</main>
+          <main className="pt-0 bg-background text-foreground">
+            {children}
+          </main>
           <Footer />
-          <BottomNav /> 
+          <BottomNav />
         </ThemeProvider>
       </body>
     </html>

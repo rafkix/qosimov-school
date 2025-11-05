@@ -175,7 +175,7 @@ export function Footer() {
         <Separator />
 
         {/* Footer Pastki Qismi */}
-        <div className="py-8">
+        <div className="py-8 px-[30px]">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-muted-foreground">© 2024 BioKimyo Akademiyasi. Barcha huquqlar himoyalangan.</div>
             <div className="flex space-x-6 text-sm">

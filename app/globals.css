@@ -172,6 +172,16 @@
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+
 /* Added custom animations for science theme */
 @keyframes float {
   0%,

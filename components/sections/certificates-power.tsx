@@ -29,36 +29,23 @@ export default function CertificatesPower() {
 
             {/* Subject Logos */}
             <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
+              <img src="/bio-svgrepo-com.svg" alt="Biologiya" className="w-20 h-20" />
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
+              <img src="/chem-svgrepo-com.svg" alt="Kimyo" className="w-20 h-20" />
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-2 mx-auto">
-                  <span className="text-white font-bold text-lg">BIO</span>
-                </div>
-                <p className="text-xs text-slate-600">Biologiya</p>
+                <img src="/uzt-svgrepo-com.svg" alt="Ona tili" className="w-20 h-20" />
               </div>
             </div>
 
             <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-2 mx-auto">
-                  <span className="text-white font-bold text-lg">CHEM</span>
-                </div>
-                <p className="text-xs text-slate-600">Kimyo</p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-2 mx-auto">
-                  <span className="text-white font-bold text-lg">UZT</span>
-                </div>
-                <p className="text-xs text-slate-600">Ona tili</p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-3xl font-medium text-emerald-600">20+</p>
-                <p className="text-emerald-600/50 text-base">maktablar bizga ishonishadi</p>
+                <p className="text-3xl font-bold text-emerald-600">20+</p>
+                <p className="text-emerald-600/50 text-base font-bold">maktablar bizga ishonishadi</p>
               </div>
             </div>
           </div>
@@ -87,36 +74,21 @@ export default function CertificatesPower() {
 
             {/* University Logos */}
             <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-2 mx-auto">
-                  <span className="text-white font-bold text-lg">ADTI</span>
-                </div>
-                <p className="text-xs text-slate-600">Andijon Davlat Tibbiyot Instituti</p>
-              </div>
+              <img src="https://edu.uzbmb.uz/uploads/edu_logo/1699244995.539.png" alt="Andijon Davlat Tibbiyot Instituti" className="w-20 h-20 object-contain" />
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
+              <img src="https://edu.uzbmb.uz/uploads/edu_logo/1698997004.8841.png" alt="Farg‘ona jamoat salomatligi tibbiyot instituti" className="w-20 h-20 object-contain" />
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
+              <img src="https://edu.uzbmb.uz/uploads/edu_logo/1699245943.7734.png" alt="Toshkent Tibbiyot Akademiyasi" className="w-20 h-20 object-contain" />
             </div>
 
             <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-2 mx-auto">
-                  <span className="text-white font-bold text-lg">FDTI</span>
-                </div>
-                <p className="text-xs text-slate-600">Farg‘ona Davlat Tibbiyot Instituti</p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mb-2 mx-auto">
-                  <span className="text-white font-bold text-lg">TTA</span>
-                </div>
-                <p className="text-xs text-slate-600">Toshkent Tibbiyot Akademiyasi</p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-3xl font-medium text-emerald-600">10+</p>
-                <p className="text-emerald-600/50 text-base mt-1">universitetlar tan olishadi</p>
+                <p className="text-3xl font-medium text-emerald-600 font-bold">10+</p>
+                <p className="text-emerald-600/50 text-base mt-1 font-bold">universitetlar tan olishadi</p>
               </div>
             </div>
           </div>

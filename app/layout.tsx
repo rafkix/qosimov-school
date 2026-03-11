@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/layout/theme-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { BottomNav } from '@/components/layout/bottom-nav'
+import { Analytics } from "@vercel/analytics/next"
 
 import './globals.css'
 

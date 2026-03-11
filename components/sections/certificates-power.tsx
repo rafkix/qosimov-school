@@ -1,99 +1,124 @@
-import { Award, GraduationCap } from "lucide-react";
+"use client"
+
+import { motion } from "framer-motion"
+import { Award, GraduationCap, CheckCircle, ArrowUpRight } from "lucide-react"
+
+const certificateFeatures = [
+  {
+    icon: Award,
+    title: "Fanlar bo'yicha imtiyoz",
+    description: "Biologiya, kimyo va ona tili fanlaridan milliy sertifikatlar orqali universitetga kirishda maksimal ballni qo'lga kiriting.",
+    logos: ['/bio-svgrepo-com.svg', '/chem-svgrepo-com.svg', '/uzt-svgrepo-com.svg']
+  },
+  {
+    icon: GraduationCap,
+    title: "OTMlar tomonidan tan olingan",
+    description: "O'zbekistondagi nufuzli tibbiyot institutlari va davlat universitetlariga imtiyozli qabul qilinish imkoniyati.",
+    logos: [
+      "https://edu.uzbmb.uz/uploads/edu_logo/1699244995.539.png",
+      "https://edu.uzbmb.uz/uploads/edu_logo/1698997004.8841.png",
+      "https://edu.uzbmb.uz/uploads/edu_logo/1699245943.7734.png"
+    ]
+  }
+]
 
 export default function CertificatesPower() {
   return (
-    <section className="py-10 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="pt-10">
-          <h2 className="text-emerald-600 text-4xl font-bold mb-2 text-center xl:text-5xl">
-            Milliy sertifikatlarimiz kuchi
-          </h2>
-          <p className="text-emerald-600 text-base opacity-50 mb-10 text-center md:text-lg xl:text-xl max-w-2xl mx-auto">
-            Kelajagingizni yoritish uchun – bizning milliy sertifikatlarimiz fanlarda yutuqlaringizni tasdiqlaydi va
-            universitetga kirishingizni osonlashtiradi!
-          </p>
+    <section className="py-20 lg:py-32 bg-white border-t border-slate-50">
+      <div className="container mx-auto px-6 lg:px-20">
+        
+        {/* Yuqori qism (Header) - WhyChooseUs bilan 1:1 bir xil */}
+        <div className="max-w-3xl mb-16 lg:mb-24">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-emerald-600 font-bold tracking-widest text-xs uppercase mb-4 flex items-center gap-2"
+          >
+            <CheckCircle size={14} /> Imtiyozli natijalar
+          </motion.p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl lg:text-6xl font-black text-slate-900 leading-tight tracking-tighter"
+          >
+            Milliy sertifikatlar bilan <br />
+            <span className="text-slate-400">maqsad sari qisqa yo'l.</span>
+          </motion.h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Main Certificate Card */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
-            <div className="col-span-2 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-8 border border-emerald-100">
-              <div className="w-15 h-15 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center mb-6">
-                <Award className="h-8 w-8 text-white" />
+        {/* Grid Strukturasi - WhyChooseUs kabi 3 ustunli format (2 ta ma'lumot + 1 ta rasm/CTA) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+          
+          {certificateFeatures.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative"
+            >
+              {/* Ikonka - WhyChooseUs bilan bir xil */}
+              <div className="mb-8 relative">
+                <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500 shadow-sm">
+                  <item.icon size={32} strokeWidth={1.5} />
+                </div>
               </div>
-              <p className="text-slate-600 text-base xl:text-lg">
-                Milliy sertifikatlarimiz biologiya, kimyo, ona tili va adabiyot kabi fanlarda yutuqlaringizni tasdiqlaydi.
-                Bu sertifikatlar sizning bilim va malakangizni namoyish etadi va kelajakdagi imkoniyatlaringizni kengaytiradi.
-              </p>
-            </div>
 
-            {/* Subject Logos */}
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <img src="/bio-svgrepo-com.svg" alt="Biologiya" className="w-20 h-20" />
-            </div>
+              {/* Matn qismi */}
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-slate-900 tracking-tight group-hover:text-emerald-600 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-slate-500 leading-relaxed font-medium lg:text-lg">
+                  {item.description}
+                </p>
 
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <img src="/chem-svgrepo-com.svg" alt="Kimyo" className="w-20 h-20" />
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <img src="/uzt-svgrepo-com.svg" alt="Ona tili" className="w-20 h-20" />
+                {/* Logotiplar qatori */}
+                <div className="flex flex-wrap gap-4 pt-4 grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100">
+                  {item.logos.map((logo, i) => (
+                    <img key={i} src={logo} alt="partner" className="h-8 w-auto object-contain" />
+                  ))}
+                  {index === 1 && (
+                    <span className="text-[10px] font-bold text-slate-400 flex items-center">
+                      +10 OTM
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-3xl font-bold text-emerald-600">20+</p>
-                <p className="text-emerald-600/50 text-base font-bold">maktablar bizga ishonishadi</p>
-              </div>
-            </div>
-          </div>
+              {/* Tagidagi mayin chiziq */}
+              <div className="absolute -bottom-8 left-0 w-full h-px bg-slate-100 group-hover:bg-emerald-200 transition-colors" />
+            </motion.div>
+          ))}
 
-          {/* Certificate Banner */}
-          <div className="h-full overflow-hidden rounded-2xl">
-            <img
-              className="w-full h-full object-cover"
-              src="/certificates.png?height=400&width=300"
-              alt="Milliy Sertifikatlar"
-            />
-          </div>
+          {/* Rasm bloki (WhyChooseUs dagi CTA card o'rniga vizual rasm) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative h-full min-h-[300px] rounded-[2.5rem] overflow-hidden border-2 border-dashed border-slate-200 p-2 group hover:border-emerald-500/50 transition-colors"
+          >
+             <div className="relative h-full w-full rounded-[2rem] overflow-hidden shadow-lg group-hover:shadow-emerald-100 transition-all">
+                <img 
+                  src="/certificates.png" 
+                  alt="Sertifikat" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all">
+                  <p className="text-white text-sm font-bold flex items-center gap-2">
+                    Namunani ko'rish <ArrowUpRight size={16} />
+                  </p>
+                </div>
+             </div>
+          </motion.div>
 
-          {/* University Recognition */}
-          <div className="grid grid-cols-2 gap-4 sm:gap-6">
-            <div className="col-span-2 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-8 border border-emerald-100">
-              <div className="w-15 h-15 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center mb-6">
-                <GraduationCap className="h-8 w-8 text-white" />
-              </div>
-              <p className="text-slate-600 text-base xl:text-lg">
-                Milliy sertifikatlarimiz O‘zbekistonning eng nufuzli universitetlari tomonidan tan olingan.  
-  Siz IELTS yoki boshqa xalqaro sertifikatlarga ehtiyoj sezmasdan universitetga kirishingiz mumkin.  
-  Milliy sertifikat sizning fanlardagi yutuqlaringizni tasdiqlaydi va universitetga kirish imkoniyatlaringizni sezilarli darajada oshiradi.
-              </p>
-            </div>
-
-            {/* University Logos */}
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <img src="https://edu.uzbmb.uz/uploads/edu_logo/1699244995.539.png" alt="Andijon Davlat Tibbiyot Instituti" className="w-20 h-20 object-contain" />
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <img src="https://edu.uzbmb.uz/uploads/edu_logo/1698997004.8841.png" alt="Farg‘ona jamoat salomatligi tibbiyot instituti" className="w-20 h-20 object-contain" />
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <img src="https://edu.uzbmb.uz/uploads/edu_logo/1699245943.7734.png" alt="Toshkent Tibbiyot Akademiyasi" className="w-20 h-20 object-contain" />
-            </div>
-
-            <div className="bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl p-6 border border-emerald-100 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-3xl font-medium text-emerald-600 font-bold">10+</p>
-                <p className="text-emerald-600/50 text-base mt-1 font-bold">universitetlar tan olishadi</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

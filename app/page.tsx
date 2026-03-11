@@ -1,9 +1,9 @@
 import { HeroSection } from "@/components/sections/hero-section"
-import { SchoolActivities } from "@/components/sections/school-activities"
+import SchoolActivities from "@/components/sections/school-activities"
 import WhyChooseUs from "@/components/sections/why-choose-us"
 import CertificatesPower from "@/components/sections/certificates-power"
 import StudentTestimonials from "@/components/sections/student-testimonials"
-import TeachersShowcase from "@/components/sections/teachers-showcase"
+import { TeachersSection } from "@/components/sections/teachers-showcase"
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
       <WhyChooseUs />
       <CertificatesPower />
       <StudentTestimonials />
-      <TeachersShowcase />
+      <TeachersSection />
       <SchoolActivities />
     </main>
   )

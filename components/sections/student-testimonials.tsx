@@ -1,134 +1,190 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { api } from "@/lib/api"
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Award,
+  ArrowRight,
+  ArrowLeft,
+  ArrowUpRight,
+  Minus,
+  LayoutGrid,
+} from 'lucide-react'
+import Link from 'next/link'
+import { api } from '@/lib/api'
 
-interface Student {
-  id: number
-  name: string
-  score: string
-  level: string
-  testimonial: string
-  image: string
-  gradient: string
-}
+const DEMO_STUDENTS = [
+  {
+    id: 1,
+    name: 'Tursunova Madina',
+    score: 'B',
+    subject: 'Ona tili',
+    image: '/certificates.png',
+    testimonial: 'Qosimov School jamoasiga katta rahmat!',
+  },
+  {
+    id: 2,
+    name: 'Musayeva Zebiniso',
+    score: 'A+',
+    subject: 'Ona tili',
+    image: '/certificates.png',
+    testimonial: "A+ darajani qo'lga kiritishimda markaz juda katta yordam berdi.",
+  },
+  {
+    id: 3,
+    name: 'Nuriddinova Mohinur',
+    score: 'B',
+    subject: 'Ona tili',
+    image: '/certificates.png',
+    testimonial: "Sifatli ta'lim uchun rahmat.",
+  },
+  {
+    id: 4,
+    name: 'Ahmadjonova Shukrona',
+    score: 'A+',
+    subject: 'Ona tili',
+    image: '/certificates.png',
+    testimonial: 'Maksimal natijaga intilgan edik va bunga erishdik!',
+  },
+]
 
-export default function StudentTestimonials() {
-  const [students, setStudents] = useState<Student[]>([])
+export default function StudentResultsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [students, setStudents] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    async function fetchTestimonials() {
+    async function load() {
       try {
-        const data = await api.getTestimonials() // backendda /api/testimonials/ bo‘lsa
-        setStudents(data as Student[])
-      } catch (err) {
-        setError("Sharhlarni yuklashda xatolik yuz berdi.")
+        const data = await api.getTestimonials()
+        setStudents(data?.length > 0 ? data : DEMO_STUDENTS)
+      } catch {
+        setStudents(DEMO_STUDENTS)
       } finally {
         setLoading(false)
       }
     }
-    fetchTestimonials()
+    load()
   }, [])
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % students.length)
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + students.length) % students.length)
+  const next = () => setCurrentIndex((prev) => (prev + 1) % (students.length - 2))
+  const prev = () =>
+    setCurrentIndex((prev) => (prev === 0 ? students.length - 3 : prev - 1))
 
-  if (loading) return <p className="text-center py-10">Yuklanmoqda...</p>
-  if (error) return <p className="text-center text-red-500 py-10">{error}</p>
-  if (students.length === 0) return <p className="text-center py-10">Sharhlar topilmadi.</p>
+  if (loading || students.length < 3) return null
 
-  const currentStudent = students[currentIndex]
+  // Faqat joriy 3ta elementni ko'rsatish
+  const visibleStudents = students.slice(currentIndex, currentIndex + 3)
 
   return (
-    <section className="py-10 sm:py-16 bg-gradient-to-br from-slate-50 to-emerald-50">
-      <div className="container mx-auto px-4">
-        {/* Title */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl xl:text-5xl font-bold text-slate-800 mb-4">
-            Bizning talabalarimiz
-          </h2>
-          <p className="text-base sm:text-lg xl:text-xl text-slate-600 max-w-2xl mx-auto">
-            Talabalarimizning muvaffaqiyatlari bilan tanishing va motivatsiya oling
-          </p>
+    <section className="py-24 bg-white overflow-hidden">
+      <div className="container mx-auto px-6 lg:px-24">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 text-emerald-600 mb-4">
+              <Minus className="w-6 h-px bg-emerald-600" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">
+                Yutuqlarimiz
+              </span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+              Bizning faxrli <br />{' '}
+              <span className="text-slate-400">o'quvchilarimiz.</span>
+            </h2>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={prev}
+              className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-600 hover:border-emerald-200 transition-all shadow-sm bg-white"
+            >
+              <ArrowLeft size={20} />
+            </button>
+            <button
+              onClick={next}
+              className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-emerald-600 hover:border-emerald-200 transition-all shadow-sm bg-white"
+            >
+              <ArrowRight size={20} />
+            </button>
+          </div>
         </div>
 
-        {/* Testimonial Card */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
-            <div className="md:flex">
-              {/* Image */}
-              <div className="md:w-2/5 p-6 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-blue-50">
-                <img
-                  src={currentStudent.image || "/placeholder.svg"}
-                  alt={currentStudent.name}
-                  className="w-full max-w-xs rounded-xl shadow-lg"
-                />
-              </div>
+        {/* Carousel Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <AnimatePresence mode="popLayout">
+            {visibleStudents.map((student, idx) => (
+              <motion.div
+                key={student.id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="group relative"
+              >
+                <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-slate-50 border border-slate-100 group-hover:border-emerald-200 transition-all duration-500">
+                  <img
+                    src={student.image}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt={student.name}
+                  />
 
-              {/* Content */}
-              <div className="md:w-3/5 p-6 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
-                    {currentStudent.name}
-                  </h3>
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                    {currentStudent.testimonial}
-                  </p>
-                </div>
-
-                {/* Score Cards */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div
-                    className={`flex-1 p-4 rounded-xl text-white ${currentStudent.gradient}`}
-                  >
-                    <p className="text-2xl font-bold">{currentStudent.score}</p>
-                    <p className="text-xs opacity-75">Ball / Daraja</p>
+                  {/* Score Badge */}
+                  <div className="absolute top-6 right-6 h-12 w-12 bg-white/90 backdrop-blur rounded-2xl flex items-center justify-center shadow-lg border border-white">
+                    <span className="text-emerald-600 font-black text-sm">
+                      {student.score}
+                    </span>
                   </div>
-                  <div
-                    className={`flex-1 p-4 rounded-xl text-white ${currentStudent.gradient}`}
-                  >
-                    <p className="text-lg font-bold">{currentStudent.level}</p>
-                    <p className="text-xs opacity-75">Imtihon turi</p>
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+
+                  {/* Info Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2">
+                      {student.subject}
+                    </p>
+                    <h4 className="text-xl font-bold mb-1">{student.name}</h4>
+                    <p className="text-slate-300 text-xs line-clamp-1 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                      "{student.testimonial}"
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
 
-          {/* Navigation */}
-          <div className="flex justify-center items-center mt-8 gap-4">
-            <button
-              onClick={prevSlide}
-              className="p-3 rounded-full bg-white shadow hover:shadow-lg transition"
-            >
-              <ChevronLeft className="w-6 h-6 text-slate-600" />
-            </button>
-
-            <div className="flex gap-2">
-              {students.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentIndex ? "bg-emerald-500" : "bg-slate-300"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={nextSlide}
-              className="p-3 rounded-full bg-white shadow hover:shadow-lg transition"
-            >
-              <ChevronRight className="w-6 h-6 text-slate-600" />
-            </button>
-          </div>
+        {/* Action Button */}
+        <div className="flex justify-center">
+          <Link href="/certificates">
+            <Button className="group h-14 px-8 rounded-2xl bg-slate-900 text-white hover:bg-emerald-600 transition-all duration-300 shadow-xl shadow-slate-200">
+              <LayoutGrid
+                size={18}
+                className="mr-2 group-hover:rotate-12 transition-transform"
+              />
+              Barcha natijalarni ko'rish
+              <ArrowUpRight
+                size={18}
+                className="ml-2 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+              />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
+  )
+}
+
+// Shadcn UI Button kodi (agar loyihada bo'lmasa ishlatish uchun)
+function Button({ className, children, ...props }: any) {
+  return (
+    <button
+      className={`inline-flex items-center justify-center font-bold text-sm ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
   )
 }

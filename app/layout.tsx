@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Montserrat, Open_Sans } from "next/font/google"
@@ -23,6 +24,33 @@ const openSans = Open_Sans({
 
 const siteName = "Biologiya va Kimyo Akademiyasi"
 const siteUrl = "https://qosimov-school.enwis.uz"
+=======
+import type React from 'react'
+import type { Metadata, Viewport } from 'next'
+import { Montserrat, Open_Sans } from 'next/font/google'
+
+import { ThemeProvider } from '@/components/layout/theme-provider'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
+import { BottomNav } from '@/components/layout/bottom-nav'
+
+import './globals.css'
+
+const montserrat = Montserrat({
+  subsets: ['cyrillic', 'latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+})
+
+const openSans = Open_Sans({
+  subsets: ['cyrillic', 'latin'],
+  display: 'swap',
+  variable: '--font-open-sans',
+})
+
+const siteName = 'Biologiya va Kimyo Akademiyasi'
+const siteUrl = 'https://qosimov-school.enwis.uz'
+>>>>>>> 40a0723 (edit code)
 const siteDescription =
   "Kelajak olimlarini amaliy ta'lim orqali rivojlantiruvchi ixtisoslashgan xususiy maktab."
 const ogImage = `${siteUrl}/og-image.jpg`
@@ -38,6 +66,7 @@ export const metadata: Metadata = {
   description: siteDescription,
 
   applicationName: siteName,
+<<<<<<< HEAD
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
 
@@ -54,6 +83,24 @@ export const metadata: Metadata = {
     "qosimov school",
     "biologiya maktabi",
     "kimyo maktabi",
+=======
+  generator: 'Next.js',
+  referrer: 'origin-when-cross-origin',
+
+  keywords: [
+    'biologiya',
+    'kimyo',
+    'xususiy maktab',
+    'ixtisoslashgan maktab',
+    'akademiya',
+    'laboratoriya',
+    "ta'lim",
+    "o'qituvchilar",
+    'sertifikat',
+    'qosimov school',
+    'biologiya maktabi',
+    'kimyo maktabi',
+>>>>>>> 40a0723 (edit code)
   ],
 
   authors: [{ name: siteName, url: siteUrl }],
@@ -61,15 +108,24 @@ export const metadata: Metadata = {
   publisher: siteName,
 
   alternates: {
+<<<<<<< HEAD
     canonical: "/",
   },
 
   verification: {
     google: "wGYArnpBT7pxJOMDG8shb9BfJoo4BCKiJYg_4pwNRGc",
+=======
+    canonical: '/',
+  },
+
+  verification: {
+    google: 'wGYArnpBT7pxJOMDG8shb9BfJoo4BCKiJYg_4pwNRGc',
+>>>>>>> 40a0723 (edit code)
   },
 
   icons: {
     icon: [
+<<<<<<< HEAD
       { url: "/favicon.ico" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -82,11 +138,29 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
+=======
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    shortcut: ['/favicon.ico'],
+  },
+
+  manifest: '/site.webmanifest',
+
+  openGraph: {
+    type: 'website',
+>>>>>>> 40a0723 (edit code)
     url: siteUrl,
     siteName,
     title: `${siteName} - Ixtisoslashgan Maktab`,
     description: siteDescription,
+<<<<<<< HEAD
     locale: "uz_UZ",
+=======
+    locale: 'uz_UZ',
+>>>>>>> 40a0723 (edit code)
     images: [
       {
         url: ogImage,
@@ -98,7 +172,11 @@ export const metadata: Metadata = {
   },
 
   twitter: {
+<<<<<<< HEAD
     card: "summary_large_image",
+=======
+    card: 'summary_large_image',
+>>>>>>> 40a0723 (edit code)
     title: `${siteName} - Ixtisoslashgan Maktab`,
     description: siteDescription,
     images: [ogImage],
@@ -110,6 +188,7 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+<<<<<<< HEAD
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -123,6 +202,21 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#ffffff",
+=======
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+
+  category: 'education',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#ffffff',
+>>>>>>> 40a0723 (edit code)
 }
 
 export default function RootLayout({
@@ -139,7 +233,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
-          themes={["light", "evening", "dark"]}
+          themes={['light', 'evening', 'dark']}
           disableTransitionOnChange
         >
           <Header />

@@ -178,6 +178,7 @@ export default function RootLayout({
           <main className="pt-0">{children}</main>
           <Footer />
           <BottomNav />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
